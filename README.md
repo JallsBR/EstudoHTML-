@@ -1,2 +1,2 @@
 # Estudo HTML
-Aulas basicas de HTML pra relembrar
+Criando uma pokedex básica com Bootstrap
