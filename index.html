@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Pokedex</title>
+        <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+        <script src="bootstrap/js/bootstrap.bundle.min.js" defer></script>  
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>     
+        <script scr="js/script.js"></script> 
+        
+    </head>
+
+
+    <body>
+        
+        <nav class="navbar navbar-expand-lg bg-dark border-bottom border-body" data-bs-theme="dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"> <b>Pokedex 1.0</b></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Opções
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+                </li>
+            </ul>
+            
+            </div>
+        </div>
+        </nav>
+
+        <div class="container">
+        <h1  class="text-primary"> <b>Pokedex</b></h1>
+        <p>Características e transformações de todos osa pokemons</p>
+        </div>
+
+        <hr>
+
+            <div class="container">
+                <div id = "pokemons"></div>
+            </div>
+
+        </div>
+
+        <script>
+            $.ajax({
+                url: "https://pokeapi.co/api/v2/pokemon/1",
+                type: "GET",
+                success: function(data) {
+                    let pokemons = data;
+                    let pokemonsHTML =  document.getElementById("pokemons");
+                    pokemonsHTML.innerHTML =  ' <div class="card" style="width: 18rem;">\
+                            <img src="' + pokemons["sprites"]["other"]["dream_world"]["front_default"] +' " class="card-img-top" alt="' +  pokemons["name"] + '">\
+                            <div class="card-body">\
+                                <h1 class="card-text"> <b>' + pokemons["name"].toUpperCase() + '</b></h1>\
+                            </div>\
+                            </div>  \
+                    ' ; 
+                    console.log(pokemons)
+                    console.log(pokemons["name"]);
+                    console.log(pokemons["height"]);
+                    console.log(pokemons["sprites"]["other"]["dream_world"]["front_default"]);
+
+
+
+                }
+                
+
+            });
+
+
+        </script>
+
+
+
+    </body>
+
+
+</html>
