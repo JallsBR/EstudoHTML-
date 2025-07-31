@@ -49,43 +49,47 @@
         </nav>
 
         <div class="container">
-        <h1  class="text-primary"> <b>Pokedex</b></h1>
-        <p>Características e transformações de todos osa pokemons</p>
+        <h1  class="text-dark"> <b>Pokedex</b></h1>
+        <p>Características e transformações de todos os pokemons</p>
         </div>
 
         <hr>
 
-            <div class="container">
-                <div id = "pokemons"></div>
+            <div class="container" >
+                <div id = "pokemons"  class="d-flex flex-wrap gap-3 justify-content-start"></div>
             </div>
 
         </div>
 
         <script>
-            $.ajax({
-                url: "https://pokeapi.co/api/v2/pokemon/1",
-                type: "GET",
-                success: function(data) {
-                    let pokemons = data;
-                    let pokemonsHTML =  document.getElementById("pokemons");
-                    pokemonsHTML.innerHTML =  ' <div class="card" style="width: 18rem;">\
-                            <img src="' + pokemons["sprites"]["other"]["dream_world"]["front_default"] +' " class="card-img-top" alt="' +  pokemons["name"] + '">\
-                            <div class="card-body">\
-                                <h1 class="card-text"> <b>' + pokemons["name"].toUpperCase() + '</b></h1>\
-                            </div>\
-                            </div>  \
-                    ' ; 
-                    console.log(pokemons)
-                    console.log(pokemons["name"]);
-                    console.log(pokemons["height"]);
-                    console.log(pokemons["sprites"]["other"]["dream_world"]["front_default"]);
+            for(var i =1; i <100; i++){
+                $.ajax({
+                    url: "https://pokeapi.co/api/v2/pokemon/" + i,
+                    method: "GET",
+                    async: true,
+                    success: function(data) {
+                        let pokemons = data;
+                        let pokemonsHTML =  document.getElementById("pokemons");
+                        pokemonsHTML.innerHTML +=  ' <div class="card  mb-4 " style="width: 18rem;">\
+                                <img src="' + pokemons["sprites"]["other"]["dream_world"]["front_default"] +' " class="card-img-top " alt="' +  pokemons["name"] + '">\
+                                <div class="card-body text-center">\
+                                    <h5 class="card-text text-dark"> <b>' + pokemons["name"].toUpperCase() + '</b></h5>\
+                                    <a class="btn btn-success" href="#">Detalhes</a>\
+                                </div>\
+                                </div>  \
+                        ' ; 
+                        console.log(pokemons)
+                        console.log(pokemons["name"]);
+                        console.log(pokemons["height"]);
+                        console.log(pokemons["sprites"]["other"]["dream_world"]["front_default"]);
 
 
 
-                }
-                
+                    }
+                    
 
-            });
+                });
+         }
 
 
         </script>
